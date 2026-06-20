@@ -68,6 +68,18 @@ function startMatching(roleName) {
         const currentWebUrl = window.location.origin + window.location.pathname;
         const finalChatLink = `${currentWebUrl}?room=${currentRoomId}`;
         
+        // --- ส่วนที่เพิ่มใหม่: สั่งยิงข้อความเข้า LINE Notify ผ่าน Vercel ---
+        fetch('/api/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: `\n🚨 มีนักเรียนต้องการคำปรึกษา!\nรีบกดลิงก์ด้านล่างเพื่อเข้าห้องแชท:\n${finalChatLink}`
+            })
+        })
+        .then(response => console.log("ส่งแจ้งเตือนเข้า LINE สำเร็จ!"))
+        .catch(error => console.error("ส่ง LINE ไม่สำเร็จ:", error));
+        // --------------------------------------------------------
+        
         document.getElementById('queue-timer').innerHTML = `
             <span style="color:#2b6cb0; font-size:0.9rem; display:block; margin-bottom:8px;">รหัสห้องแชทของคุณบนคลาวด์สำเร็จแล้ว!</span>
             <input type="text" value="${finalChatLink}" id="copyLinkInput" style="padding:5px; width:80%; font-size:0.8rem; border-radius:8px; border:1px solid #ccc; text-align:center;" readonly onClick="this.select();">
