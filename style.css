@@ -1,0 +1,461 @@
+/* ตั้งค่าเริ่มต้นระบบ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    position: relative;
+    color: #1a202c;
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #f7fafc;
+}
+
+/* เลเยอร์รูปทรงเรขาคณิตพาสเทลเบลอฟุ้ง */
+.bg-static-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(85px);
+    opacity: 0.35;
+}
+
+body.dark-theme .shape {
+    opacity: 0.15;
+    filter: blur(100px);
+}
+
+.circle-1 { width: 450px; height: 450px; background: #b5e2fa; border-radius: 50%; top: -10%; right: 5%; }
+.circle-2 { width: 380px; height: 380px; background: #e2cfea; border-radius: 50%; bottom: -5%; left: -5%; }
+.square-1 { width: 320px; height: 320px; background: #c7f9cc; border-radius: 40px; top: 35%; left: 12%; }
+.triangle-1 { width: 350px; height: 350px; background: #ffdac1; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); bottom: 15%; right: 12%; }
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.view-section {
+    display: none;
+    animation: fadeEffect 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.view-section.active {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* สไตล์พื้นผิวกระจกฝ้าขอบใส */
+.header-box, .welcome-box, .role-card, .settings-sidebar-card, .settings-main-box, .game-container, 
+.info-card, .instagram-display-card, .thanks-box, .mascot-quote-box, .mascot-static-zone, 
+.chat-main-area, .system-status-box {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.02), 0 2px 10px rgba(0, 0, 0, 0.01);
+}
+
+body.dark-theme .header-box, 
+body.dark-theme .welcome-box, 
+body.dark-theme .role-card, 
+body.dark-theme .settings-sidebar-card, 
+body.dark-theme .settings-main-box,
+body.dark-theme .game-container,
+body.dark-theme .info-card,
+body.dark-theme .instagram-display-card,
+body.dark-theme .thanks-box,
+body.dark-theme .mascot-quote-box,
+body.dark-theme .mascot-static-zone,
+body.dark-theme .chat-main-area,
+body.dark-theme .system-status-box {
+    background: rgba(30, 30, 30, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+.header-box { padding: 30px 40px; text-align: left; }
+.header-box h1 { font-size: 2.2rem; font-weight: 600; }
+.header-box p { font-size: 1.25rem; line-height: 1.8; color: #2d3748; }
+body.dark-theme .header-box p { color: #e2e8f0; }
+
+.main-content { display: flex; gap: 40px; align-items: flex-start; }
+.sidebar { display: flex; flex-direction: column; gap: 16px; width: 250px; flex-shrink: 0; }
+
+.nav-btn, .back-home-btn {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    cursor: pointer;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: all 0.25s ease;
+}
+
+body.dark-theme .nav-btn, body.dark-theme .back-home-btn {
+    background: rgba(45, 55, 72, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #edf2f7;
+}
+
+.nav-btn:hover, .back-home-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.back-danger-btn {
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+.back-danger-btn:hover {
+    background: #ef4444 !important;
+    color: white !important;
+    border-color: #ef4444;
+}
+
+.top-navigation { display: flex; justify-content: flex-start; }
+.back-home-btn { padding: 10px 20px; font-size: 0.95rem; }
+
+.welcome-box { padding: 50px; flex-grow: 1; min-height: 280px; }
+.welcome-box h2 { font-size: 1.9rem; margin-bottom: 15px; font-weight: 600; }
+.welcome-box p { font-size: 1.25rem; line-height: 1.8; color: #4a5568; }
+
+.floating-box { animation: floatAnimation 5s ease-in-out infinite; will-change: transform; }
+@keyframes floatAnimation { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+
+.role-selection-grid { display: flex; gap: 30px; width: 100%; }
+.role-card { flex: 1; padding: 60px 40px; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; min-height: 200px; }
+.role-card h3 { font-size: 1.5rem; font-weight: 600; }
+
+.pulse-box { animation: pulseAnimation 4s ease-in-out infinite; will-change: transform; }
+.role-selection-grid div:nth-child(2) { animation-delay: 2s; }
+@keyframes pulseAnimation { 0% { transform: scale(1); } 50% { transform: scale(1.03); box-shadow: 0 15px 40px rgba(0,0,0,0.04); } 100% { transform: scale(1); } }
+
+.settings-layout { display: flex; gap: 40px; align-items: flex-start; }
+.settings-sidebar-card { width: 280px; padding: 30px 25px; cursor: pointer; flex-shrink: 0; }
+.settings-sidebar-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.sub-text { font-size: 0.95rem; line-height: 1.6; color: #718096; }
+body.dark-theme .sub-text { color: #a0aec0; }
+.settings-main-box { flex-grow: 1; padding: 50px; min-height: 220px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; line-height: 1.8; text-align: center; }
+
+/* ================= สไตล์หน้าเครดิต ================= */
+.credits-layout { display: flex; gap: 40px; align-items: flex-start; width: 100%; }
+.credits-sidebar { display: flex; flex-direction: column; gap: 20px; width: 320px; flex-shrink: 0; }
+.info-card, .instagram-display-card { padding: 30px 25px; }
+.info-card h3 { font-size: 1.1rem; color: #718096; margin-bottom: 8px; font-weight: 400; }
+.highlight-text { font-size: 1.6rem; font-weight: 600; color: #2b6cb0; }
+body.dark-theme .highlight-text { color: #63b3ed; }
+.instagram-display-card { display: flex; align-items: center; gap: 16px; background: rgba(225, 48, 108, 0.06); border: 1px solid rgba(225, 48, 108, 0.15); }
+body.dark-theme .instagram-display-card { background: rgba(225, 48, 108, 0.12); border: 1px solid rgba(225, 48, 108, 0.25); }
+.ig-icon { font-size: 1.8rem; }
+.ig-meta { display: flex; flex-direction: column; }
+.ig-label { font-size: 0.85rem; color: #e1306c; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.ig-username { font-size: 1.25rem; font-weight: 600; color: #2d3748; }
+body.dark-theme .ig-username { color: #f7fafc; }
+.thanks-box { flex-grow: 1; padding: 60px; min-height: 250px; display: flex; align-items: center; justify-content: center; }
+.thanks-text { font-size: 1.4rem; line-height: 1.8; text-align: center; color: #2d3748; }
+body.dark-theme .thanks-text { color: #edf2f7; }
+
+/* ================= CSS ส่วนสไตล์ห้องแชท (ตามบรีฟแบ่ง 3 ส่วน) ================= */
+.chat-layout {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+    height: 580px;
+}
+
+/* ฝั่งซ้าย (สีเหลืองส้มพาสเทล) */
+.chat-left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.mascot-quote-box {
+    padding: 20px 16px;
+    background: rgba(246, 173, 85, 0.12);
+    border: 1px solid rgba(246, 173, 85, 0.3);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #dd6b20;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body.dark-theme .mascot-quote-box {
+    background: rgba(246, 173, 85, 0.18);
+    color: #fbd38d;
+}
+
+.mascot-static-zone {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(254, 235, 200, 0.2);
+    border: 1px solid rgba(246, 173, 85, 0.2);
+}
+
+#chat-mascot-container {
+    width: 130px;
+    height: 130px;
+    animation: floatAnimation 4s ease-in-out infinite;
+}
+
+/* ตรงกลาง (ฝั่งกล่องแชทหลัก สีแดงพาสเทล) */
+.chat-main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(229, 62, 62, 0.02);
+    border: 1px solid rgba(229, 62, 62, 0.18);
+    overflow: hidden;
+}
+body.dark-theme .chat-main-area {
+    border-color: rgba(229, 62, 62, 0.25);
+}
+
+.chat-messages-container {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ตกแต่งฟองคำพูดแชทแบบสลับฝั่งคนที่ 1 และ คนที่ 2 */
+.chat-bubble {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.6;
+    word-break: break-word;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+/* คนที่ 1 (ฝั่งผู้ใช้งานหลัก - สีฟ้าพาสเทล) */
+.chat-bubble.user-1 {
+    align-self: flex-end;
+    background: #3182ce;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* คนที่ 2 (ฝั่งคู่สนทนา - สีเทา/ขาวกระจกฝ้า) */
+.chat-bubble.user-2 {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2d3748;
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+body.dark-theme .chat-bubble.user-2 {
+    background: rgba(45, 55, 72, 0.8);
+    color: #f7fafc;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.system-log {
+    align-self: center;
+    background: rgba(0, 0, 0, 0.05);
+    color: #718096;
+    font-size: 0.85rem;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin: 8px 0;
+}
+body.dark-theme .system-log {
+    background: rgba(255, 255, 255, 0.08);
+    color: #a0aec0;
+}
+
+/* ช่องเขียนข้อความด้านล่างสุด */
+.chat-input-bar {
+    display: flex;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    gap: 12px;
+    align-items: center;
+}
+body.dark-theme .chat-input-bar {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+#chat-input-field {
+    flex-grow: 1;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 18px;
+    border-radius: 24px;
+    font-size: 1rem;
+    outline: none;
+    color: inherit;
+}
+body.dark-theme #chat-input-field {
+    background: rgba(45, 55, 72, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.send-message-btn {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+.send-message-btn:hover {
+    background: #c53030;
+    transform: scale(1.05);
+}
+
+/* ฝั่งขวา (ระบบแจ้งเตือนสีฟ้าเขียวพาสเทล) */
+.chat-right-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.system-status-box {
+    padding: 24px 18px;
+    height: 100%;
+    background: rgba(49, 151, 149, 0.05);
+    border: 1px solid rgba(49, 151, 149, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.system-status-box h4 {
+    font-size: 1.05rem;
+    color: #2c7a7b;
+}
+body.dark-theme .system-status-box h4 { color: #4fd1c5; }
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+body.dark-theme .status-indicator { color: #cbd5e0; }
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #38a169;
+    border-radius: 50%;
+}
+.dot.pulse { animation: dotPulse 2s infinite; }
+@keyframes dotPulse { 0% { transform: scale(0.9); opacity: 0.6; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.6; } }
+
+/* กล่องแจ้งเตือนปิดกั้นเมื่อตัดสาย */
+.hidden-alert {
+    display: none;
+    background: rgba(229, 62, 62, 0.1);
+    border: 1px solid rgba(229, 62, 62, 0.3);
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: #c53030;
+    line-height: 1.5;
+    animation: fadeEffect 0.3s ease forwards;
+}
+body.dark-theme .hidden-alert { background: rgba(229, 62, 62, 0.2); color: #feb2b2; }
+
+/* ================= แอนิเมชันห้องฝึกหายใจหลัก ================= */
+.game-container { display: none; flex-direction: column; align-items: center; padding: 40px; gap: 35px; width: 100%; }
+.queue-status-box { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.queue-info { display: flex; align-items: center; gap: 12px; background: rgba(49, 130, 206, 0.1); padding: 8px 16px; border-radius: 30px; }
+body.dark-theme .queue-info { background: rgba(49, 130, 206, 0.2); }
+.queue-badge { background: #3182ce; color: white; padding: 3px 10px; font-size: 0.85rem; border-radius: 20px; font-weight: 600; }
+#queue-timer { font-size: 1.05rem; font-weight: 600; color: #2b6cb0; }
+body.dark-theme #queue-timer { color: #63b3ed; }
+#breathing-tip { font-size: 1.1rem; color: #4a5568; }
+body.dark-theme #breathing-tip { color: #a0aec0; }
+
+.breathing-space { display: flex; flex-direction: column; align-items: center; gap: 20px; min-height: 280px; }
+
+.mascot-viewport {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+}
+
+.mascot-viewport.inhale-exhale { animation: breathingCycle 8s ease-in-out infinite; }
+@keyframes breathingCycle {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 10px 15px rgba(186, 230, 253, 0.3)); }
+    50% { transform: scale(1.35); filter: drop-shadow(0 25px 35px rgba(49, 130, 206, 0.25)); }
+}
+
+#breathing-text { font-size: 1.4rem; font-weight: 600; color: #2d3748; text-align: center; }
+body.dark-theme #breathing-text { color: #f7fafc; }
+
+@media (max-width: 900px) {
+    .chat-layout { flex-direction: column; height: auto; }
+    .chat-left-sidebar, .chat-right-sidebar { width: 100%; }
+    .chat-main-area { height: 400px; }
+    .main-content, .role-selection-grid, .settings-layout, .credits-layout { flex-direction: column; align-items: center; gap: 25px; }
+    .sidebar, .settings-sidebar-card, .credits-sidebar { width: 100%; }
+    .header-box { padding: 25px 20px; text-align: center; }
+    .nav-btn, .back-home-btn { text-align: center; }
+}

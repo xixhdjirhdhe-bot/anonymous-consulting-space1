@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Consulting Space</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="bg-static-shapes">
+        <div class="shape circle-1"></div>
+        <div class="shape circle-2"></div>
+        <div class="shape square-1"></div>
+        <div class="shape triangle-1"></div>
+    </div>
+
+    <div class="container">
+        
+        <section id="home-page" class="view-section active">
+            <header class="header-box">
+                <h1>Anonymous Consulting Space</h1>
+            </header>
+
+            <div class="main-content">
+                <aside class="sidebar">
+                    <button class="nav-btn" onclick="switchView('role-page')">เลือกบทบาท</button>
+                    <button class="nav-btn" onclick="switchView('settings-page')">ตั้งค่า</button>
+                    <button class="nav-btn" onclick="switchView('credits-page')">เครดิต</button>
+                </aside>
+
+                <main class="welcome-box floating-box">
+                    <h2>ยินดีต้อนรับ</h2>
+                    <p>สู่พื้นที่ปรึกษาแบบไม่เปิดเผยตัวตน คุณสามารถเริ่มต้นได้ทันที</p>
+                </main>
+            </div>
+        </section>
+
+        <section id="role-page" class="view-section">
+            <div class="top-navigation">
+                <button class="back-home-btn" onclick="cancelMatching()">⬅ กลับหน้าหลัก</button>
+            </div>
+
+            <header class="header-box floating-box">
+                <p id="role-instruction">ยินดีต้อนรับทุกท่าน เข้าสู่การปรึกษาแบบไม่เปิดเผยตัวตน คุณสามารถเลือกได้ว่าวันนี้จะทำอะไร</p>
+            </header>
+
+            <div id="role-selection" class="role-selection-grid">
+                <div class="role-card pulse-box" onclick="startMatching('คนต้องการคำปรึกษา')">
+                    <h3>คนต้องการคำปรึกษา</h3>
+                </div>
+                <div class="role-card pulse-box" onclick="startMatching('คนให้คำปรึกษา')">
+                    <h3>คนให้คำปรึกษา</h3>
+                </div>
+            </div>
+
+            <div id="breathing-companion" class="game-container">
+                <div class="queue-status-box">
+                    <div class="queue-info">
+                        <span class="queue-badge">กำลังจับคู่สาย</span>
+                        <p id="queue-timer">คาดว่าจะได้คุยภายใน: 45 วินาที</p>
+                    </div>
+                    <p id="breathing-tip">มาระบายความเครียดด้วยการกำหนดลมหายใจไปพร้อมกับน้องก้อนเมฆกันนะ</p>
+                </div>
+                
+                <div class="breathing-space">
+                    <div id="cloud-mascot-container" class="mascot-viewport inhale-exhale">
+                        </div>
+                    <h3 id="breathing-text">เตรียมพร้อม...</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="settings-page" class="view-section">
+            <div class="top-navigation">
+                <button class="back-home-btn" onclick="switchView('home-page')">⬅ กลับหน้าหลัก</button>
+            </div>
+
+            <div class="settings-layout">
+                <div class="settings-sidebar-card" onclick="toggleDarkMode()">
+                    <h3>เปลี่ยนธีม</h3>
+                    <p class="sub-text">เมื่อกดผิวด้านหลังจะเปลี่ยนเป็นโหมดมืด สำหรับคนไม่ชอบความสว่างๆ</p>
+                </div>
+
+                <div class="settings-main-box floating-box">
+                    <p>ขอบคุณที่แวะเข้ามาในหน้าตั้งค่า แต่ตอนนี้ยังไม่มีตั้งค่าอะไรให้กด แต่อนาคตไม่แน่นะจ๊ะ 😊</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="credits-page" class="view-section">
+            <div class="top-navigation">
+                <button class="back-home-btn back-danger-btn" onclick="switchView('home-page')">⬅ กลับหน้าหลัก</button>
+            </div>
+
+            <div class="credits-layout">
+                <div class="credits-sidebar">
+                    <div class="info-card">
+                        <h3>จัดทำโดย</h3>
+                        <p class="highlight-text">พรรคก้าวใหม่</p>
+                    </div>
+                    
+                    <div class="instagram-display-card">
+                        <span class="ig-icon">📸</span>
+                        <div class="ig-meta">
+                            <span class="ig-label">Instagram</span>
+                            <span class="ig-username">kaomai.lsw</span>
+                        </div>
+                    </div>
+                </div>
+
+                <main class="thanks-box floating-box">
+                    <p class="thanks-text">ขอขอบคุณ ทุกท่าน ที่เข้ามาใช้เว็บที่พวกเราสร้างขึ้นมา พวกเรารักทุกท่าน</p>
+                </main>
+            </div>
+        </section>
+
+        <section id="chat-page" class="view-section">
+            <div class="top-navigation">
+                <button class="back-home-btn back-danger-btn" onclick="leaveChatRoom()">⬅ ออกจากห้องแชท</button>
+            </div>
+
+            <div class="chat-layout">
+                <div class="chat-left-sidebar">
+                    <div class="mascot-quote-box">
+                        <p id="mascot-text">เก่งมากแล้วนะวันนี้! ยินดีที่ได้เจอกันครับ 🌟</p>
+                    </div>
+                    <div class="mascot-static-zone">
+                        <div id="chat-mascot-container">
+                            </div>
+                    </div>
+                </div>
+
+                <div class="chat-main-area">
+                    <div class="chat-messages-container" id="chat-logs">
+                        <div class="system-log">เชื่อมต่อพื้นที่ปลอดภัยสำเร็จแล้ว เริ่มต้นบทสนทนาแบบไม่ระบุตัวตนได้เลยค่ะ</div>
+                    </div>
+                    
+                    <div class="chat-input-bar">
+                        <input type="text" id="chat-input-field" placeholder="ช่องเขียนข้อความ..." onkeydown="if(event.key === 'Enter') sendChatMessage()">
+                        <button class="send-message-btn" onclick="sendChatMessage()">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-right-sidebar">
+                    <div class="system-status-box">
+                        <h4>สถานะห้องสนทนา</h4>
+                        <div class="status-indicator">
+                            <span class="dot pulse"></span>
+                            <span id="status-text">คู่สนทนากำลังออนไลน์</span>
+                        </div>
+                        <div id="alert-disconnect-box" class="hidden-alert">
+                            <p>⚠️ มีผู้ใช้งานท่านหนึ่งกดออกจากห้องสนทนาแล้ว ระบบจะระงับแชทนี้</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
